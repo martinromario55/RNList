@@ -13,6 +13,8 @@ import pokemonList from './data.json'
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar backgroundColor="#333" />
+
       {/* <ScrollView style={styles.scrollView}>
         {pokemonList.map(pokemon => {
           return (
@@ -25,7 +27,7 @@ export default function App() {
       </ScrollView> */}
       <View style={styles.paddingView}>
         <FlatList
-          data={pokemonList}
+          data={[]}
           renderItem={({ item }) => {
             return (
               <View style={styles.card} key={item.id}>
@@ -36,6 +38,11 @@ export default function App() {
           }}
           keyExtractor={item => item.id.toString()}
           ItemSeparatorComponent={<View style={{ height: 16 }}></View>}
+          ListEmptyComponent={
+            <View style={styles.card}>
+              <Text style={styles.cardText}>No item found</Text>
+            </View>
+          }
         />
       </View>
     </SafeAreaView>
